@@ -1,1 +1,1244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProGloves | Профессиональные строительные перчатки</title>
+  <meta name="description" content="Оптовые и розничные поставки строительных перчаток премиум качества">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #FF6B35;
+      --secondary: #004E89;
+      --accent: #1A936F;
+      --dark: #0A0A0A;
+      --light: #FFFFFF;
+      --gray: #888888;
+      --gradient-1: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+      --gradient-2: linear-gradient(135deg, #004E89 0%, #1A936F 100%);
+      --gradient-3: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --glass: rgba(255, 255, 255, 0.1);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 78, 137, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(26, 147, 111, 0.1) 0%, transparent 50%);
+      animation: bgPulse 15s ease-in-out infinite;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Floating Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: float 20s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.5;
+      }
+      90% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled {
+      padding: 15px 5%;
+      background: rgba(10, 10, 10, 0.95);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-1);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      background: var(--gradient-1);
+      padding: 12px 28px;
+      border-radius: 30px;
+      color: white !important;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .mobile-menu span {
+      width: 25px;
+      height: 3px;
+      background: var(--light);
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      animation: slideInLeft 0.8s ease;
+    }
+
+    .hero-badge i {
+      color: var(--primary);
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+      animation: slideInLeft 0.8s ease 0.1s both;
+    }
+
+    .hero h1 span {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--gray);
+      margin-bottom: 40px;
+      max-width: 500px;
+      animation: slideInLeft 0.8s ease 0.2s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      animation: slideInLeft 0.8s ease 0.3s both;
+    }
+
+    .btn {
+      padding: 16px 36px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient-1);
+      color: white;
+      box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(255, 107, 53, 0.6);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--light);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 60px;
+      animation: slideInLeft 0.8s ease 0.4s both;
+    }
+
+    .stat {
+      text-align: left;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 900;
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--gray);
+      margin-top: 5px;
+    }
+
+    .hero-visual {
+      position: relative;
+      animation: slideInRight 0.8s ease 0.3s both;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-1);
+      opacity: 0.1;
+      z-index: 1;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .hero-image-wrapper:hover .hero-image {
+      transform: scale(1.05);
+    }
+
+    .floating-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      animation: floatCard 6s ease-in-out infinite;
+    }
+
+    .floating-card.card-1 {
+      top: -30px;
+      right: -30px;
+      animation-delay: 0s;
+    }
+
+    .floating-card.card-2 {
+      bottom: 40px;
+      left: -40px;
+      animation-delay: 3s;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .floating-card i {
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .floating-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .floating-card p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Features Section */
+    .features {
+      padding: 120px 5%;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 80px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--gray);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 40px 30px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-1);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 107, 53, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient-1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 32px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* Catalog Section */
+    .catalog {
+      padding: 120px 5%;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .catalog-card {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      overflow: hidden;
+      transition: all 0.4s;
+      position: relative;
+    }
+
+    .catalog-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+
+    .catalog-card:hover::after {
+      opacity: 0.05;
+    }
+
+    .catalog-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 107, 53, 0.3);
+    }
+
+    .catalog-image {
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .catalog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .catalog-card:hover .catalog-image img {
+      transform: scale(1.1);
+    }
+
+    .catalog-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--gradient-1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .catalog-content {
+      padding: 30px;
+    }
+
+    .catalog-content h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .catalog-content p {
+      color: var(--gray);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .catalog-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 900;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .price span {
+      font-size: 14px;
+      color: var(--gray);
+      -webkit-text-fill-color: var(--gray);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 120px 5%;
+      position: relative;
+    }
+
+    .contact-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--glass);
+      backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 40px;
+      padding: 60px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .contact-info h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .contact-info p,
+    .contact-info a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-info a:hover {
+      color: var(--primary);
+    }
+
+    .messengers {
+      display: flex;
+      gap: 15px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .messenger-btn {
+      flex: 1;
+      min-width: 200px;
+      padding: 18px 30px;
+      border-radius: 16px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.3s;
+    }
+
+    .messenger-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .messenger-btn.whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .messenger-btn.telegram {
+      background: #0088cc;
+      color: white;
+    }
+
+    .messenger-btn.phone {
+      background: var(--gradient-1);
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px 5%;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: var(--gray);
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-stats {
+        gap: 30px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
+
+      .contact-container {
+        padding: 40px 30px;
+      }
+
+      .floating-card {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .catalog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Scroll Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="logo">ProGloves</div>
+    <div class="nav-links">
+      <a href="#features">Преимущества</a>
+      <a href="#catalog">Каталог</a>
+      <a href="#contact">Контакты</a>
+      <a href="tel:+79772925425" class="nav-cta">ТЕЛЕФОН</a>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-shield-alt"></i>
+          <span>Защита премиум класса</span>
+        </div>
+        <h1>
+          Профессиональные<br>
+          <span>строительные перчатки</span>
+        </h1>
+        <p class="hero-subtitle">
+          Оптовые поставки и розничные продажи. 
+          Отгрузка от 1 коробки в день обращения.
+        </p>
+        <div class="hero-buttons">
+          <a href="tel:+79772925425" class="btn btn-primary">
+            <i class="fas fa-phone"></i>
+            Позвонить сейчас
+          </a>
+          <a href="https://web.whatsapp.com/" class="btn btn-secondary" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            Написать в WhatsApp
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Лет на рынке</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Довольных клиентов</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">24ч</div>
+            <div class="stat-label">Отгрузка заказа</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <img src="assetshero.img.jpeg" alt="Строительные перчатки" class="hero-image">
+        </div>
+        <div class="floating-card card-1">
+          <i class="fas fa-certificate"></i>
+          <h8>ГОСТ</h8>
+          <p>Сертифицировано</p>
+        </div>
+        <div class="floating-card card-2">
+          <i class="fas fa-truck"></i>
+          <h9>Доставка</h9>
+          <p>По всей России</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="section-header reveal">
+      <div class="section-tag">Почему мы</div>
+      <h2 class="section-title">Надежный партнер для вашего бизнеса</h2>
+      <p class="section-subtitle">
+        Предлагаем только качественную продукцию с гарантией производителя
+      </p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <i class="fas fa-award"></i>
+        </div>
+        <h3>Качество по ГОСТ</h3>
+        <p>Прошли тесты на износ, сцепление и защиту от порезов</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+        <h3>Быстрая доставка</h3>
+        <p>Отгрузка со склада в день заказа. Работаем со всеми транспортными компаниями. Бесплатная доставка по Махачкале и Каспийску</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <i class="fas fa-boxes"></i>
+        </div>
+        <h3>Опт от 1 коробки</h3>
+        <p>Гибкие условия для бригад и снабженцев. Специальные цены при объеме</p>
+      </div>      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <i class="fas fa-file-invoice-dollar"></i>
+        </div>
+        <h3>Работа с НДС</h3>
+        <p>Полный пакет документов: счет-фактура, УПД.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <section class="catalog" id="catalog">
+    <div class="section-header reveal">
+      <div class="section-tag">Каталог</div>
+      <h2 class="section-title">Наша продукция</h2>
+      <p class="section-subtitle">
+        Широкий ассортимент перчаток для любых видов работ
+      </p>
+    </div>
+    <div class="catalog-grid">
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge">ХИТ</span>
+          <img src="Безымянный.png" alt="ЗУБР перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Трикотажные перчатки с двойной обливной ладонью из латекса ЗУБР</h3>
+          <p>Из натурального дышащего материала и обладают латексным покрытием для защиты ладони. Комплект из 10 пар перчаток выполнен из хлопка, покрытие изготовлено из полиэстера. Технология бесшовной вязки обеспечивает комфортное применение.</p>
+          <div class="catalog-footer">
+            <div class="price">от 41 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+          </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <img src="Снимок экрана_23-4-2026_134247_www.ozon.ru.jpeg" alt="Винил/Нитриловые перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Wally plastic - Цвет: Черный Винил/Нитриловые</h3>
+          <p>Выполнены из высококачественного винилового материала с добавлением нитрила, что делает их гипоаллергенными и безопасными для использования даже для людей с чувствительной кожей.Текстурированная поверхность перчаток обеспечивает отличный захват предметов, что делает их удобными для использования в различных областях: медицине, косметологии, хозяйстве, садоводстве и других.</p>
+          <div class="catalog-footer">
+            <div class="price">от 165 ₽ <span>/ упаковка</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+          </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">TOP</span>
+          <img src="Рисунок8.jpg" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>ХБ с ПВХ точками</h3>
+          <p>Базовая защита для общих работ. Вентиляция, точный хват, доступная цена. Цвета: Черный, Серый, Синий</p>
+          <div class="catalog-footer">
+            <div class="price">от 9 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+          </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">TOP</span>
+          <img src="Рисунок13.jpg" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Рабочие ХБ с ПВХ Бронитекс</h3>
+          <p>Обеспечивают защиту от механических воздействий и загрязнений. Тонкая и прочная пряжа высшего сорта обеспечивает пальцам чувствительность и подходит для точных работ, во время уборки или иных работ в саду, огороде, на приусадебном участке, в домашнем хозяйстве. Цвета: Черный, Белый, Темно-серый</p>
+          <div class="catalog-footer">
+            <div class="price">от 10 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+             </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">TOP</span>
+          <img src="2026-05-23_15-30-42.png" alt="Перчатки защитные нейлоновые с нитриловым обливом">
+        </div>
+        <div class="catalog-content">
+          <h3>Перчатки защитные нейлоновые с нитриловым обливом</h3>
+          <p>Для защиты рук при работах, связанных с опасностью пореза и повреждения пальцев при контакте с острыми и колющими предметами. Они обеспечивают хорошее сцепление с сухими, влажными и скользкими поверхностями и обладают высокой механической прочностью. Перчатки защитные нейлоновые с нитрильным покрытием черные/красные. универсальный размер, 12 пар в упаковке</p>
+          <div class="catalog-footer">
+            <div class="price">от 21 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+             </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">TOP</span>
+          <img src="Рисунок17.jpg" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Строительные Рабочие Intertool</h3>
+          <p>Универсальные могут быть как женские так и перчатки мужские, могут использоваться в зимнее и летнее время. Перчатки защитные защищают руки от механических повреждений. Перчатки нитриловые предназначены для выполнения работ со средними значениями механических нагрузок, подойдут для садовых, строительных, ремонтных, слесарных, сантехнических и покрасочных работ. Материал перчатки строительные рабочие дышащий, не вызывает аллергических pеакций. Они обеспечивают надежную защиту рук во время работы в саду, огороде, гараже или доме. </p>
+          <div class="catalog-footer">
+            <div class="price">от 51 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+             </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">TOP</span>
+          <img src="2026-05-23_16-26-48.png" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Перчатки трикотажные с 2-м латексным обливом</h3>
+          <p>Перчатки трикотажные с двойным латексным покрытием отлично облегают, позволяя совершать точечные действия, при этом надежно защищая руки от грязи и порезов стекла и арматуры. Имеют широкую сферу применения: в производстве, быту, садоводстве, строительстве и на складе. Отлично подходят для проведения точных электротехнических работ. Показывают свои лучшие качества при работе со скользящими и гладкими поверхностями.</p>
+          <div class="catalog-footer">
+            <div class="price">от 25 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+             </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">TOP</span>
+          <img src="2026-05-23_16-53-28.png" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Нейлон со вспененным латексным покрытием</h3>
+          <p>Из бесшовной нейлоновой основы и покрытия из мягкого вспененного латекса. Шероховатая отделка покрытия обеспечивает надёжный захват влажных и сухих поверхностей.Покрытие из латекса гарантирует устойчивость к влаге и механическим повреждениям. Цвета: Синий, Зеленый</p>
+          <div class="catalog-footer">
+            <div class="price">от 24 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+             </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">TOP</span>
+          <img src="Рисунок5.jpg" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Утепленные Торро B03-480 оранжево-синие</h3>
+          <p>Из 100%го акрила бесшовным методом, на три четверти облиты вспененным латексом синего цвета. Перчатки хорошо облегают руки и обеспечивают гибкость хвата и чувствительность рук. </p>
+          <div class="catalog-footer">
+            <div class="price">от 32 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+             </div>
+        </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">NEW</span>
+          <img src="Рисунок19.jpg" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Защитные перчатки из нитрила с синим покрытием для садоводства и строительства</h3>
+          <p>Изготовлен из нитрилового каучука, водонепроницаем, обладает хорошей устойчивостью к трению и молекулам масла. Конструкция с полным погружением клея может эффективно предотвращать проникновение воды и адаптироваться к различной влажной среде. Подходит для уборки сада, сельскохозяйственного садоводства, обслуживания и обращения. Конструкция руки в соответствии с эргономикой, с хорошим комфортом и ловкостью, может эффективно повысить эффективность работы.</p>
+          <div class="catalog-footer">
+            <div class="price">от 20 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+    </div>
+     </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">NEW</span>
+          <img src="Рисунок20.jpg" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Перчатки нейлоновые с резиновым покрытием, полуоблитые</h3>
+          <p>предназначены для защиты рук от порезов и царапин, что делает их незаменимыми при выполнении различных задач. Они подходят как для профессионалов, так и для любителей, которые занимаются садоводством или мелким ремонтом. Дополнительный защитный слой из резины позволяет использовать перчатки в условиях повышенной влажности и агрессивной среды</p>
+          <div class="catalog-footer">
+            <div class="price">от 20 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+    </div>
+     </div>
+      </div>
+      <div class="catalog-card reveal">
+        <div class="catalog-image">
+          <span class="catalog-badge" style="background: var(--gradient-2);">NEW</span>
+          <img src="2026-05-25_15-24-59.png" alt="ХБ перчатки">
+        </div>
+        <div class="catalog-content">
+          <h3>Перчатки рабочие из трикотажного полотна с полным нитриловым покрытием (манжета крага)</h3>
+          <p>Масло- и бензостойкие, износостойкие перчатки анатомической формы для защиты от мелких механических повреждений и общих производственных загрязнений, размер универсальный. Манжета - крага. Обеспечивают хорошее сцепление с сухими и промасленными поверхностями. Полное нитриловое покрытие перчаток отталкивает продукты нефтепереработки, бензин, смазочные материалы, грязь. Перчатки предназначены для работ с грубыми и жесткими поверхностями, подходят для работ с абразивными материалами. Основа: 100% хлопок.</p>
+          <div class="catalog-footer">
+            <div class="price">от 65 ₽ <span>/ пара</span></div>
+            <a href="tel:+79772925425" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Заказать</a>
+    </div>
+    
+    
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="section-header reveal">
+      <div class="section-tag">Контакты</div>
+      <h2 class="section-title">Свяжитесь с нами</h2>
+      <p class="section-subtitle">
+        Готовы ответить на все вопросы и принять ваш заказ
+      </p>
+    </div>
+    <div class="contact-container reveal">
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-info">
+            <h4>Адрес</h4>
+            <p>Ирчи Казака, Индустриальный пререулок 5/1 контейнер д 162</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="contact-info">
+            <h4>График работы</h4>
+            <p>С 09:00 до 22:00 Пятница выходной день</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="contact-info">
+            <h4>Телефон</h4>
+            <a href="tel:">+7(977)-292-54-25 +7(977)-168-13-51</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-info">
+            <h4>Email</h4>
+            <a href="mailto:Prof-perhatki@mail.ru">prof-perchatki@mail.ru</a>
+          </div>
+        </div>
+      </div>
+      <div class="messengers">
+        <a href="https://web.whatsapp.com/" class="messenger-btn whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          WhatsApp
+        </a>
+        <a href="https://t.me/optovaya_lavka" class="messenger-btn telegram" target="_blank">
+          <i class="fab fa-telegram-plane"></i>
+          Telegram
+        </a>
+        <a href="tel:+79772925425" class="messenger-btn phone">
+          <i class="fas fa-phone"></i>
+          Позвонить
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 ProGloves. Все права защищены.</p>
+  </footer>
+
+  <script>
+    // Create particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 20 + 's';
+      particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (elementTop < windowHeight - 100) {
+          element.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Trigger once on load
+
+    // Mobile menu
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.addEventListener('click', () => {
+      alert('Мобильное меню: прокрутите вниз для навигации');
+    });
+  </script>
+</body>
+</html>
